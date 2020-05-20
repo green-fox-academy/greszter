@@ -1,1 +1,1 @@
-This is my syllabus link: https://github.com/green-fox-academy/ripped-syllabus
+This is my syllabus link: [click here] (https://github.com/green-fox-academy/ripped-syllabus)
