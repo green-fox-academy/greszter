@@ -1,0 +1,51 @@
+header {
+  background-color: lightgray;
+  width: 100%;
+  height: 40px;
+  margin: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: lightseagreen;
+  margin: 0;
+}
+
+h1 {
+  padding-left: 10%;
+  margin: 0;
+}
+
+main {
+  padding: 0 10%;
+}
+
+section>label {
+  display: block;
+}
+
+section>input {
+  display: block;
+  background-color: lightgray;
+
+}
+
+section>textarea {
+  display: block;
+  background-color: lightgray;
+}
+
+button {
+  margin: 10px 0;
+}
+
+section>article {
+  border: lightgray solid 2px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+article>h1 {
+  padding: 0;
+  margin: 0;
+}
