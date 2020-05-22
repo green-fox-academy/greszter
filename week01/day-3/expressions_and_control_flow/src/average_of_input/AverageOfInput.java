@@ -10,15 +10,25 @@ public class AverageOfInput {
         // Sum: 22, Average: 4.4
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Specify five numbers:");
-        int userInput1 = scanner.nextInt();
-        int userInput2 = scanner.nextInt();
-        int userInput3 = scanner.nextInt();
-        int userInput4 = scanner.nextInt();
-        int userInput5 = scanner.nextInt();
+        //int userInput1 = scanner.nextInt();
+        //int userInput2 = scanner.nextInt();
+        //int userInput3 = scanner.nextInt();
+        //int userInput4 = scanner.nextInt();
+       // int userInput5 = scanner.nextInt();
 
-        int sum = userInput1 + userInput2 + userInput3 + userInput4 + userInput5;
+        // int sum = userInput1 + userInput2 + userInput3 + userInput4 + userInput5;
+
+        int sum = 0;
+
+        for (int i = 0; i < 5; i++){
+            System.out.println("Specify a number:");
+            int number = scanner.nextInt();
+            sum = sum + number;
+        }
+
         double avg = (double) sum / 5;
+
+
 
         System.out.println("Sum: " + sum + ", Average: " + avg);
 
