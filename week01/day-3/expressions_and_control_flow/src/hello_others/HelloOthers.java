@@ -12,6 +12,5 @@ public class HelloOthers {
         System.out.println("Hello Szid!");
         System.out.println("Hello Aron!");
         System.out.println("Hello Dani!");
-        System.out.println("Hello everybody else!");
     }
 }
