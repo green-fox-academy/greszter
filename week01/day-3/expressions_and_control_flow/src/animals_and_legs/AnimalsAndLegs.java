@@ -12,12 +12,12 @@ public class AnimalsAndLegs {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Number of chickens:");
-        int userInput1 = scanner.nextInt();
+        int numberOfChickens = scanner.nextInt();
         System.out.println("Number of pigs:");
-        int userInput2 = scanner.nextInt();
+        int numberOfPigs = scanner.nextInt();
 
         System.out.println("Number of legs:");
-        System.out.println((userInput1 * 2) + (userInput2 * 4));
+        System.out.println((numberOfChickens * 2) + (numberOfPigs * 4));
 
 
     }

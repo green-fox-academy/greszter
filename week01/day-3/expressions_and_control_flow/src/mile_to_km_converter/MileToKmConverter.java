@@ -11,8 +11,9 @@ public class MileToKmConverter {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Miles:");
         double userInput1 = scanner.nextDouble();
+        double convertToKm = 1.609344;
 
-        System.out.println("It is " + (userInput1 * 1.609344) + " km.");
+        System.out.println("It is " + (userInput1 * convertToKm) + " km.");
 
 
 
