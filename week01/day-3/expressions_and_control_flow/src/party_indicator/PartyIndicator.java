@@ -23,13 +23,13 @@ public class PartyIndicator {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Number of girls:");
-        int userInput1 = scanner.nextInt();
+        int numberOfGirls = scanner.nextInt();
         System.out.println("Number of boys:");
-        int userInput2 = scanner.nextInt();
+        int numberOfBoys = scanner.nextInt();
 
-        boolean equal = (userInput1 == userInput2);
-        boolean notEqual = (userInput1 != userInput2);
-        int sum = userInput1 + userInput2;
+        boolean equal = (numberOfGirls == numberOfBoys);
+        boolean notEqual = (numberOfGirls != numberOfBoys);
+        int sum = numberOfGirls + numberOfBoys;
 
         if (equal){
             if (sum > 20){
@@ -38,7 +38,7 @@ public class PartyIndicator {
                 System.out.println("Average party...");
             }
         } else if (notEqual){
-            if (userInput1 == 0){
+            if (numberOfGirls == 0){
                 System.out.println("Sausage party");
             } else if (sum > 20){
                 System.out.println("Quite cool party!");
