@@ -15,7 +15,6 @@ public class DrawTriangle {
         // The triangle should have as many lines as the number was
 
         Scanner scanner = new Scanner(System.in);
-        String a = "*";
 
         System.out.println("Add a number:");
         int userNumber = scanner.nextInt();
