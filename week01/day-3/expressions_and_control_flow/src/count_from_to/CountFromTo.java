@@ -24,7 +24,7 @@ public class CountFromTo {
         int firstNumber = scanner.nextInt();
 
         System.out.println("Give another number:");
-        int secondNumber = scanner.nextInt();15
+        int secondNumber = scanner.nextInt();
 
         while (firstNumber > secondNumber) {
             System.out.println("The second number should be bigger");
