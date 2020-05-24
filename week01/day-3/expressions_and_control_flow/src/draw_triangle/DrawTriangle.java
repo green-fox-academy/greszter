@@ -19,10 +19,9 @@ public class DrawTriangle {
         System.out.println("Add a number:");
         int userNumber = scanner.nextInt();
 
-        for (int i = 1; i <= userNumber; i++) {
-            for (int j = 1; j <= userNumber; j++) {
-                if (j <= i){
-                System.out.print("*");}
+        for (int i = 1; i <= userNumber; ++i) {
+            for (int j = 1; j <= i; ++j) {
+                    System.out.print("*");
             }
             System.out.println();
         }
