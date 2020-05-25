@@ -9,7 +9,7 @@ public class ChangeElement {
     // - Change the 8 to 4
     // - Print the fourth element
 
-    int numbers[] = {1, 2, 3, 8, 5, 6};
+    int[] numbers = {1, 2, 3, 8, 5, 6};
 
     numbers[3] = 4;
 

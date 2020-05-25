@@ -9,7 +9,7 @@ public class GreeterFunction {
 
         String al = "Green Fox";
         greet(al);
-        
+
     }
 
     public static void greet(String name){
