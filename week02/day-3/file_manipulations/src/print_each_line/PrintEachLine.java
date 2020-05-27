@@ -14,7 +14,7 @@ public class PrintEachLine {
         // then it should print the following error message: "Unable to read file: my-file.txt"
 
         try {
-            Path filePath = Paths.get("assets/lorem-ipsum.txt");
+            Path filePath = Paths.get("exercise.txt");
             List<String> lines = Files.readAllLines(filePath);
             System.out.println("All the lines in the file:");
             for(String line : lines)
