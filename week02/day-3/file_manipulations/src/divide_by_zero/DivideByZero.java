@@ -14,9 +14,9 @@ public class DivideByZero {
         try {
 
             Scanner scanner = new Scanner(System.in);
-            double newNumber = scanner.nextInt();
+            int newNumber = scanner.nextInt();
 
-            double result = 10 / newNumber;
+            int result = 10 / newNumber;
             System.out.println(result);
         }catch (ArithmeticException e){
             System.out.println("Can't divide by zero");
