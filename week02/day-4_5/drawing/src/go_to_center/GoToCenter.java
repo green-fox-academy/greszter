@@ -15,8 +15,8 @@ public class GoToCenter {
 
         for (int i = 0; i < 3 ; i++) {
             Random random = new Random();
-            int random1 = random.nextInt(321);
-            int random2 = random.nextInt(321);
+            int random1 = random.nextInt(WIDTH + 1);
+            int random2 = random.nextInt(HEIGHT + 1);
             graphics.setColor(Color.RED);
             goToCenter(random1, random2, graphics);
         }
