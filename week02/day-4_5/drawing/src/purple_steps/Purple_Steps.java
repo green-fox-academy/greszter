@@ -12,12 +12,9 @@ public class Purple_Steps {
         // [https://github.com/green-fox-academy/teaching-materials/blob/master/workshop/drawing/assets/r3.png]
 
 
-        for (int i = 0; i < WIDTH; i +=10) {
-            for (int j = 1; j < WIDTH; j++){
-                int size =                 
-            }
+        for (int i = 0; i < WIDTH; i += 10) {
             graphics.setColor(new Color(148,0,211));
-            graphics.fillRect(i, i, 10 + i, 10 + i);
+            graphics.fillRect(i, i, 10, 10);
         }
 
     }
