@@ -1,0 +1,20 @@
+Errors
+
+    What is the difference between compile time errors and runtime errors?
+    Is syntax error a runtime error? Why?
+    Is semantic error a runtime error? Why?
+
+Exception handling
+
+    What are the Exceptions?
+    What kind of Exceptions do we have in Java?
+    What are the checked and unchecked exceptions
+    Can I throw exceptions?
+    Can I handle these exceptions?
+    What is the try block used for?
+    What is the catch block used for?
+    Can I handle different kind of errors?
+    What is the point of the finally block?
+    Is it executed even if I return from the try block?
+
+File IO
