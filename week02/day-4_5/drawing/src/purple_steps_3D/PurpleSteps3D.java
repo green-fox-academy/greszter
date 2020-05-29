@@ -19,7 +19,7 @@ public class PurpleSteps3D {
             j = (j + (i * 5)) - 5;
             graphics.fillRect(j, j, i * 5, i * 5);
         }
-        
+
     }
 
     // Don't touch the code below
