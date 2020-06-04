@@ -14,10 +14,11 @@ public class Sharpie {
 
     public void use(){
 
-        this.inkAmount--;
+        this.inkAmount -= 10;
     }
 
     public float getInkAmount(){
-        return inkAmount;
+         int realInkAmount = inkAmount > 0 ? (int) inkAmount : 0;
+         return realInkAmount;
     }
 }
