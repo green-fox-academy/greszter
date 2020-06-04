@@ -3,6 +3,8 @@ package blog_post;
 public class Main {
     public static void main(String[] args) {
 
+        Blog blog = new Blog();
+
         BlogPost postDoe = new BlogPost("John Doe", "Lorem Ipsum", "Lorem ipsum dolor sit amet.",
                 "2000.05.04.");
         BlogPost postUrban = new BlogPost("Tim Urban", "Wait but why",
@@ -14,7 +16,21 @@ public class Main {
                         "me that he wasn't really into the whole organizer profile thing.",
                 "2017.03.28.");
 
+        blog.add(postDoe);
+        blog.add(postUrban);
+        blog.add(postTurton);
+        System.out.println("Number of posts: " + blog.numberOfPosts());
+
 
         System.out.println(postTurton.getText());
+
+        blog.delete(2);
+        System.out.println("Number of posts: " + blog.numberOfPosts());
+
+
+        blog.update(0, postTurton);
+        System.out.println("Number of posts: " + blog.numberOfPosts());
+
+
     }
 }
