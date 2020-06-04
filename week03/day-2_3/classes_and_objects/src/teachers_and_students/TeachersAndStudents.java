@@ -18,8 +18,8 @@ public class TeachersAndStudents {
     Teacher teacher = new Teacher();
 
 
-    student.question();
-    teacher.teach();
+    student.question(teacher);
+    teacher.teach(student);
 
 
     }

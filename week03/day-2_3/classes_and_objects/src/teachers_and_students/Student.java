@@ -11,8 +11,7 @@ public class Student {
         System.out.println("The student is learning something new");
     }
 
-    public void question(){
-       Teacher teacher = new Teacher();
+    public void question(Teacher teacher){
        teacher.answer();
     }
 
