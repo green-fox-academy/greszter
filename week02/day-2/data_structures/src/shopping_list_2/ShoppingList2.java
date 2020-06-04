@@ -42,7 +42,7 @@ public class ShoppingList2 {
         whoBuysMore(bobsList, alicesList, "Rice");
 
         System.out.print("Who buys more potato?");
-//        whoBuysMore(bobsList, alicesList, "Potato");
+        whoBuysMore(bobsList, alicesList, "Potato");
         System.out.println();
 
         System.out.print("Who buys more different products? ");
@@ -65,11 +65,13 @@ public class ShoppingList2 {
     }
 
     public static void whoBuysMore(HashMap<String, Integer> bobsList, HashMap<String, Integer> alicesList, String item) {
-        int bobsNumber = bobsList.get(item);
-        int alicesNumber = alicesList.get(item);
 
 
-            try {
+        int bobsNumber = bobsList.containsKey(item)?bobsList.get(item):0;
+        int alicesNumber = alicesList.containsKey(item)?alicesList.get(item):0;
+
+
+
                 if (bobsNumber > alicesNumber) {
                     System.out.println("Bob");
                 }
@@ -79,9 +81,6 @@ public class ShoppingList2 {
                 if (bobsNumber == alicesNumber) {
                     System.out.println("Equal");
                 }
-            }catch (NullPointerException e) {
-                System.out.println("NullPointerException caught");
-            }
 
     }
 
