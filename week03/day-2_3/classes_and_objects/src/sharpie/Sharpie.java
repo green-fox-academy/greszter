@@ -21,4 +21,8 @@ public class Sharpie {
          int realInkAmount = inkAmount > 0 ? (int) inkAmount : 0;
          return realInkAmount;
     }
+
+    public void setInkAmount(float inkAmount) {
+        this.inkAmount = inkAmount;
+    }
 }

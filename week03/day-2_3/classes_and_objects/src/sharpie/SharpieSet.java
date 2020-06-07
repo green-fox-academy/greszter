@@ -45,9 +45,13 @@ public class SharpieSet {
         this.sharpieSet.add(sharpie);
     }
 
-    public void getNumberOfSharpies() {
-        System.out.println(this.sharpieSet.size());
+    public int getNumberOfSharpies() {
+        return this.sharpieSet.size();
     }
+
+
+
+
 
 
 }
