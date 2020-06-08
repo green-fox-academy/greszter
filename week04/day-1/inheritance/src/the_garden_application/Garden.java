@@ -23,7 +23,7 @@ public class Garden {
     public void water(double waterAmount){
         List<Plant> needsWatering = new ArrayList();
         for (int i = 0; i < treesAndFlowers.size(); i++) {
-            if (treesAndFlowers.get(i).needsWater() == true){
+            if (treesAndFlowers.get(i).needsWater()){
                 needsWatering.add(treesAndFlowers.get(i));
             }
         }

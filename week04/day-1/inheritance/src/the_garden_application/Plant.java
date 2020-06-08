@@ -8,6 +8,7 @@ public class Plant {
     protected String color;
     protected double absorb;
     protected String type;
+    protected int maxWater;
 
     public Plant(String color) {
         this.currentWaterAmount = 0;
@@ -17,7 +18,7 @@ public class Plant {
     }
 
     public boolean needsWater(){
-        return false;
+        return this.currentWaterAmount < (this.getMaxWater() >= 0?this.getMaxWater():0);
     }
 
     public double getCurrentWaterAmount(){
@@ -34,6 +35,10 @@ public class Plant {
 
     public String getType(){
        return type;
+    }
+
+    public int getMaxWater(){
+        return maxWater;
     }
 
 }

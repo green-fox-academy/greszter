@@ -6,15 +6,17 @@ public class Flower extends Plant{
 
     public Flower(String color) {
         super(color);
-        this.absorb = 0.75;
         this.type = "Flower";
     }
 
     @Override
-    public boolean needsWater(){
-        if (this.currentWaterAmount < 5){
-            return true;
-        }else return false;
+    public double getAbsorb(){
+        return 0.75;
+    }
+
+    @Override
+    public int getMaxWater(){
+        return 5;
     }
 }
 
