@@ -15,11 +15,6 @@ public class Mentor extends Person{
     }
 
     @Override
-    public void introduce() {
-        super.introduce();
-    }
-
-    @Override
     public String specificIntroduction() {
         return (" " + level + "mentor.");
     }

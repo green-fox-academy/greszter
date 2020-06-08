@@ -19,11 +19,6 @@ public class Student extends Person{
     }
 
     @Override
-    public void introduce() {
-        super.introduce();
-    }
-
-    @Override
     public String specificIntroduction(){
         return (" from " + this.previousOrganization + " who skipped " + this.skippedDays + " days from the course already.");
     }
@@ -34,7 +29,7 @@ public class Student extends Person{
     }
 
     public void skipDays(int numberOfDays){
-        this.skippedDays =+ numberOfDays;
+        this.skippedDays += numberOfDays;
     }
 }
 

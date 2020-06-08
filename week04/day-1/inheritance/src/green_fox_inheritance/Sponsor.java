@@ -18,11 +18,6 @@ public class Sponsor extends Person{
     }
 
     @Override
-    public void introduce() {
-        super.introduce();
-    }
-
-    @Override
     public String specificIntroduction() {
         return (" who represents " + this.company + " and hired " + this.hiredStudents + " students so far.");
     }
