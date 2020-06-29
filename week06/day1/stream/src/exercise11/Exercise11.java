@@ -1,15 +1,11 @@
 package exercise11;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Exercise11 {
   public static void main(String[] args) {
@@ -32,11 +28,8 @@ public class Exercise11 {
 
       System.out.println(wordFrequency.entrySet());
 
-
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
-
-
 }
