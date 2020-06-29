@@ -10,7 +10,7 @@ public class Exercise7 {
 
     cities.stream()
         .filter(c -> c.startsWith("N"))
-        .forEach(System.out::println);7
+        .forEach(System.out::println);
   }
 
 }
