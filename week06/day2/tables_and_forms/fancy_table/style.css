@@ -1,0 +1,29 @@
+table {
+  width: 300px;
+  border: 1px solid dimgrey;
+  border-spacing: 0px;
+  border-radius: 4px;
+  font-family: 'Quicksand', sans-serif;
+}
+
+th {
+  background-color: black;
+  color: rgb(236, 231, 231);
+  text-align: left;
+  font-weight: lighter;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(236, 231, 231);
+}
+
+tr {
+  color: dimgrey;
+}
+
+th, td{
+  border: 1px solid dimgrey;
+  padding: 10px;
+}
+
+
