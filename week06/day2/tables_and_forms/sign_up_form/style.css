@@ -1,0 +1,71 @@
+form, button, p, label, input {
+  display: block;
+}
+
+input {
+  border-bottom: 1px solid gainsboro;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+}
+
+input:focus {
+  border-bottom: 1px solid green;
+}
+
+#submit {
+  background-color: green;
+  border-radius: 2px;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  align-content: center;
+}
+
+.flex-item {
+  flex: none;
+  align-self: center;
+  margin: 30px;
+}
+
+#or {
+  height: 30px;
+  width: 30px;
+  background-color: gainsboro;
+  text-align: center;
+  font-size: 20px;
+  padding: 20px;
+  border-radius: 50%;
+}
+
+input, #submit {
+  margin: 10px;
+  padding: 15px;
+  margin-left: 0;
+}
+
+#facebook, #twitter, #google {
+  color: white;
+  width: 150px;
+  height: 40px;
+  border: 0;
+  border-radius: 4px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+#facebook {
+  background-color: darkslateblue;
+}
+
+#twitter {
+  background-color: lightblue;
+}
+
+#google {
+  background-color: rgb(212, 17, 17);
+}
