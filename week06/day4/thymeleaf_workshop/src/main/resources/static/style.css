@@ -1,0 +1,18 @@
+td, table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 5px;
+}
+
+table {
+    margin: 5px;
+}
+
+.king {
+    color: darkorange;
+    font-size: 16px;
+    font-weight: bold;
+}
