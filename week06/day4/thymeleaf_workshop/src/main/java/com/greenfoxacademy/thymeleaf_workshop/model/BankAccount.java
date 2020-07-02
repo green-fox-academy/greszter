@@ -29,15 +29,19 @@ public class BankAccount {
   }
 
   public String getAnimalType() {
-    if (animalType.equals(AnimalType.LION)){
+    if (animalType.equals(AnimalType.LION)) {
       return "lion";
-    }if (animalType.equals(AnimalType.MEERKAT)){
+    }
+    if (animalType.equals(AnimalType.MEERKAT)) {
       return "meerkat";
-    }if (animalType.equals(AnimalType.WARTHOG)){
+    }
+    if (animalType.equals(AnimalType.WARTHOG)) {
       return "warthog";
-    }if (animalType.equals(AnimalType.RED_BILLED_HORNBILL)){
+    }
+    if (animalType.equals(AnimalType.RED_BILLED_HORNBILL)) {
       return "red-billed hornbill";
-    }if (animalType.equals(AnimalType.LION_KING)){
+    }
+    if (animalType.equals(AnimalType.LION_KING)) {
       return "lion king";
     }
     return null;
@@ -47,11 +51,11 @@ public class BankAccount {
     this.animalType = animalType;
   }
 
-  public String getKingStyleClass(){
+  public String getKingStyleClass() {
     return this.animalType.equals(AnimalType.LION_KING) ? "king" : "";
   }
 
-  public String goodOrBad(){
+  public String goodOrBad() {
     return this.balance >= 500f ? "Good Guy" : "Bad Guy";
   }
 }

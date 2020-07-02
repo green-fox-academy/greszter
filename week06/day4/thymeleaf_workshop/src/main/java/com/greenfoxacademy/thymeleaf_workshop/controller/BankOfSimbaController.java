@@ -20,20 +20,20 @@ public class BankOfSimbaController {
       new BankAccount("Simba", 2000f, AnimalType.LION_KING));
 
   @GetMapping("/show")
-  public String showAccount(Model model){
+  public String showAccount(Model model) {
     BankAccount account = new BankAccount("Simba", 2000f, AnimalType.LION_KING);
     model.addAttribute("account", account);
     return "index";
   }
 
   @GetMapping("/html")
-  public String getHTMLInfo(Model model){
+  public String getHTMLInfo(Model model) {
     model.addAttribute("text", "This is an <em>HTML</em> text. <b>Enjoy yourself!</b>");
     return "htmlInfo";
   }
 
   @GetMapping("/accounts")
-  public String listAccounts(Model model){
+  public String listAccounts(Model model) {
     model.addAttribute("accounts", accounts);
 
     return "accounts";

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/style.css}" />
+    <link rel="stylesheet" th:href="@{/style.css}"/>
     <title>Accounts</title>
 </head>
 <body>
@@ -15,14 +15,16 @@
     <td>Index of element</td>
     <td>Good or Bad</td>
     </thead>
-<tr th:each="account : ${accounts}">
-    <td th:text="${account.name}"></td>
-    <td th:text="${account.balance}"></td>
-    <td th:text="${account.animalType}" th:attr="class=${account.kingStyleClass}"></td>
-    <td th:text="${accountStat.index}"></td>
-    <td th:text="${account.goodOrBad()}"></td>
+    <tr th:each="account : ${accounts}">
+        <td th:text="${account.name}"></td>
+        <td th:text="${account.balance}"></td>
+        <td th:text="${account.animalType}" th:attr="class=${account.kingStyleClass}"></td>
+        <td th:text="${accountStat.index}"></td>
+        <td th:text="${account.goodOrBad()}"></td>
+    </tr>
 
-</tr>
+    
+
 </table>
 </body>
 </html>
