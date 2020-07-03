@@ -6,12 +6,21 @@ public class ShopItem {
   private String description;
   private Integer price;
   private Integer quantityOfStock;
+  private ItemType type;
+  private Currency currency;
 
-  public ShopItem(String name, String description, Integer price, Integer quantityOfStock) {
+
+  public ItemType getType() {
+    return type;
+  }
+
+  public ShopItem(String name, String description, Integer price, Integer quantityOfStock, ItemType type) {
     this.name = name;
     this.description = description;
     this.price = price;
     this.quantityOfStock = quantityOfStock;
+    this.type = type;
+    this.currency = Currency.CZECH_KORUNA;
   }
 
   public String getName() {
@@ -31,6 +40,10 @@ public class ShopItem {
   }
 
   public Integer getPrice() {
+    return this.price;
+  }
+
+  public Integer getPriceNumber(){
     return price;
   }
 
@@ -45,4 +58,5 @@ public class ShopItem {
   public void setQuantityOfStock(Integer quantityOfStock) {
     this.quantityOfStock = quantityOfStock;
   }
+
 }

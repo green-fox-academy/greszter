@@ -1,8 +1,12 @@
 package com.greenfoxacademy.webshop.controller;
 
+import com.greenfoxacademy.webshop.model.Currency;
+import com.greenfoxacademy.webshop.model.ItemType;
 import com.greenfoxacademy.webshop.model.ShopItem;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Controller;
@@ -11,13 +15,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 
-public class WebshopController {List<ShopItem> items = Arrays.asList(
-    new ShopItem("Running Shoes", "Nike running shoes for everyday sport", 1000, 5),
-    new ShopItem("Printer", "Some HP printer", 3000, 2),
-    new ShopItem("Coca Cola", "0.5l standard coke", 25, 0),
-    new ShopItem("Wokin", "Chicken with fired rice and WOKIN sauce", 119, 100),
-    new ShopItem("T-shirt", "Blue with a corgi on a bike", 300, 1),
-    new ShopItem("Nike bag", "Black backpack", 1500, 4)
+public class WebshopController {
+
+  List<ShopItem> items = Arrays.asList(
+    new ShopItem("Running Shoes", "Nike running shoes for everyday sport", 1000, 5, ItemType.CLOTHES_AND_SHOES),
+    new ShopItem("Printer", "Some HP printer", 3000, 2, ItemType.ELECTRONICS),
+    new ShopItem("Coca Cola", "0.5l standard coke", 25, 0, ItemType.FOOD_AND_BEVERAGES),
+    new ShopItem("Wokin", "Chicken with fired rice and WOKIN sauce", 119, 100, ItemType.FOOD_AND_BEVERAGES),
+    new ShopItem("T-shirt", "Blue with a corgi on a bike", 300, 1, ItemType.CLOTHES_AND_SHOES),
+    new ShopItem("Nike bag", "Black backpack", 1500, 4, ItemType.CLOTHES_AND_SHOES)
 );
 
   @GetMapping("/")
@@ -50,7 +56,7 @@ public class WebshopController {List<ShopItem> items = Arrays.asList(
 
   public List<ShopItem> cheapestToMostExpensive() {
     return items.stream()
-        .sorted((i1, i2) -> i1.getPrice().compareTo(i2.getPrice()))
+        .sorted((i1, i2) -> i1.getPriceNumber().compareTo(i2.getPriceNumber()))
         .collect(Collectors.toList());
   }
 
@@ -91,10 +97,10 @@ public class WebshopController {List<ShopItem> items = Arrays.asList(
   }
 
   public ShopItem getMostExpensive() {
-    return items.stream()
-        .sorted((i1, i2) -> i2.getPrice().compareTo(i1.getPrice()))
-        .findFirst()
-        .orElse(new ShopItem("The shop is empty", null, null, null));
+    Optional<ShopItem> mostExpensive = items.stream()
+        .max(Comparator.comparing(ShopItem::getPriceNumber));
+
+    return mostExpensive.isPresent()?mostExpensive.get():new ShopItem("Unknown", null, null, null, null);
   }
 
   @GetMapping("/search")
@@ -109,6 +115,46 @@ public class WebshopController {List<ShopItem> items = Arrays.asList(
             i.getDescription().toLowerCase().contains(search))
         .collect(Collectors.toList());
   }
+
+  @GetMapping("/foodAndBeverages")
+  public String getFoodAndBev(Model model){
+    model.addAttribute("items", filterByType(ItemType.FOOD_AND_BEVERAGES));
+
+    return "index";
+  }
+
+  @GetMapping("/clothesAndShoes")
+  public String getClothesAndShoes(Model model){
+    model.addAttribute("items", filterByType(ItemType.CLOTHES_AND_SHOES));
+
+    return "index";
+  }
+
+  @GetMapping("/electronics")
+  public String getElectronics(Model model){
+    model.addAttribute("items", filterByType(ItemType.ELECTRONICS));
+
+    return "index";
+  }
+
+  public List<ShopItem> filterByType(ItemType type){
+    return items.stream()
+        .filter(i -> i.getType().equals(type))
+        .collect(Collectors.toList());
+  }
+
+//  @GetMapping("/eur")
+//  public String getPriceInEuro(Model model){
+//    model.addAttribute("items", euroConverter());
+//
+//    return "index";
+//  }
+//
+//  public void euroConverter(){
+//    items.stream()
+//        .forEach(i -> i.setPrice(i.getPrice((Currency.EURO)));
+//  }
+
 
 
 }

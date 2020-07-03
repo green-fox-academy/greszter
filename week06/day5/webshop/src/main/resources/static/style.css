@@ -23,6 +23,14 @@ nav {
     padding: 20px 20px 20px 0;
 }
 
+div {
+    padding: 5px 0 5px 0;
+}
+
+div > a {
+    padding: 3px;
+}
+
 a {
     background: #34495e;
     color:  #85929e;
@@ -41,6 +49,11 @@ td {
     padding: 5px;
 }
 
-input, button {
+input {
     background:  #d6dbdf;
+}
+
+a#head {
+    text-decoration: none;
+    background: none;
 }
