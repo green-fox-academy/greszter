@@ -1,4 +1,46 @@
+body, head {
+    font-family: 'Josefin Slab', serif;
+}
+
 table, td {
     border: 1px solid black;
     border-collapse: collapse;
+}
+
+header {
+    color:  #85929e;
+    background: #17202a;
+    font-size: 36px;
+    padding: 10px;
+}
+
+body {
+    background: #85929e;
+    color: #17202a;
+}
+
+nav {
+    padding: 20px 20px 20px 0;
+}
+
+a {
+    background: #34495e;
+    color:  #85929e;
+    padding: 10px;
+    margin: 5px;
+    font-style: normal;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+table, form {
+    margin: 10px 0 20px 0;
+}
+
+td {
+    padding: 5px;
+}
+
+input, button {
+    background:  #d6dbdf;
 }
