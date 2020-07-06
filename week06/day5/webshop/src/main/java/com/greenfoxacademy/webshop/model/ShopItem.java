@@ -57,8 +57,8 @@ public class ShopItem {
     this.quantityOfStock = quantityOfStock;
   }
 
-  public ShopItem convertPrice(Double change){
-    return new ShopItem(this.name, this.description, this.price * change, this.quantityOfStock, this.type);
+  public ShopItem convertPrice(Double exchange){
+    return new ShopItem(this.name, this.description, this.price * exchange, this.quantityOfStock, this.type);
   }
 
 }

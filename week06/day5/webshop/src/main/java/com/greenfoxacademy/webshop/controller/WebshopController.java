@@ -1,7 +1,6 @@
 package com.greenfoxacademy.webshop.controller;
 
 import com.greenfoxacademy.webshop.model.ItemType;
-import com.greenfoxacademy.webshop.model.PriceFilter;
 import com.greenfoxacademy.webshop.model.ShopItem;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -17,8 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public class WebshopController {
 
-  private Double kcToEur = 0.037;
-  private Double kcToHuf = 13.22;
+  final Double kcToEur = 0.037;
+  final Double kcToHuf = 13.22;
 
   List<ShopItem> items = Arrays.asList(
       new ShopItem("Running Shoes", "Nike running shoes for everyday sport", 1000.00, 5,
@@ -123,6 +122,11 @@ public class WebshopController {
         .collect(Collectors.toList());
   }
 
+  @GetMapping("/more-filters")
+  public String moreFilters(){
+    return "filters";
+  }
+
   @GetMapping("/foodAndBeverages")
   public String getFoodAndBev(Model model) {
     model.addAttribute("items", filterByType(ItemType.FOOD_AND_BEVERAGES));
@@ -176,10 +180,10 @@ public class WebshopController {
   }
 
   public List<ShopItem> hufConverter() {
-    List<ShopItem> HUF = items.stream()
+    return items.stream()
         .map(i -> i.convertPrice(kcToHuf))
         .collect(Collectors.toList());
-    return HUF;
+
   }
 
   @GetMapping("/above")

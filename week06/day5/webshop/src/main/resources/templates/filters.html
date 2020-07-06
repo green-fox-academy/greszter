@@ -4,26 +4,29 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/style.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap" rel="stylesheet">
-    <title>Webshop</title>
+    <title>Webshop More Filters</title>
 </head>
 <body>
 <header>
-    <a href="/" id="head">Ugly (but functional) Webshop</a>
-    <a href="/more-filters" id="head_right">More >></a>
+    <a href="/more-filters" id="head">Filters</a>
 </header>
 
-<nav>
-    <a href="/available">Show Available</a>
-    <a href="/cheapestFirst">Cheapest First</a>
-    <a href="/containsNike">Contains Nike</a>
-    <a href="/stockAverage">Average of Stock</a>
-    <a href="/mostExpensive">Most Expensive</a>
-</nav>
-
-<form action="/search" method="get">
-    <input type="text" placeholder="Search here..." name="search"/>
-    <button type="submit">Search</button>
-</form>
+<div>
+    <a href="/foodAndBeverages">Foods and Beverages</a>
+    <a href="/clothesAndShoes">Clothes and Shoes</a>
+    <a href="/electronics">Electronics</a>
+    <a href="/" class="currency">Kč</a>
+    <a href="/eur" class="currency">€</a>
+    <a href="/huf" class="currency">Ft</a>
+</div>
+<div>
+    <form action="/filter" method="get">
+        <input type="number" placeholder="Filter by price..." name="priceFilter"/>
+        <button type="submit" formaction="/above">Above</button>
+        <button type="submit" formaction="/below">Below</button>
+        <button type="submit" formaction="/exactly">Exactly</button>
+    </form>
+</div>
 
 <table>
     <thead>

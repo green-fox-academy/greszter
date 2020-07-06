@@ -58,6 +58,12 @@ a#head {
     background: none;
 }
 
+a#head_right {
+    text-decoration: none;
+    background: none;
+    text-align: right;
+}
+
 a.currency {
     padding-left: 15px;
     padding-right: 15px;
