@@ -1,16 +1,24 @@
 package com.greenfoxacademy.webshop.controller;
 
+import com.greenfoxacademy.webshop.model.Currency;
 import com.greenfoxacademy.webshop.model.ItemType;
 import com.greenfoxacademy.webshop.model.ShopItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
+import javafx.scene.control.ComboBox;
+import javax.swing.JComboBox;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 
@@ -43,6 +51,7 @@ public class WebshopController {
 
   @GetMapping("/available")
   public String getAvailable(Model model) {
+    model.addAttribute("currency", "Kč");
     model.addAttribute("items", available());
     return "index";
   }
@@ -55,6 +64,7 @@ public class WebshopController {
 
   @GetMapping("/cheapestFirst")
   public String cheapestFirst(Model model) {
+    model.addAttribute("currency", "Kč");
     model.addAttribute("items", cheapestToMostExpensive());
     return "index";
   }
@@ -67,6 +77,7 @@ public class WebshopController {
 
   @GetMapping("/containsNike")
   public String containsNike(Model model) {
+    model.addAttribute("currency", "Kč");
     model.addAttribute("items", getNike());
     return "index";
   }
@@ -98,7 +109,7 @@ public class WebshopController {
   public String mostExpensive(Model model) {
     model.addAttribute("introString", "The most expensive item is: ");
     model.addAttribute("find", getMostExpensive().getName());
-    return "/find";
+    return "find";
   }
 
   public ShopItem getMostExpensive() {
@@ -111,6 +122,7 @@ public class WebshopController {
 
   @GetMapping("/search")
   public String search(String search, Model model) {
+    model.addAttribute("currency", "Kč");
     model.addAttribute("items", getSearchResult(search));
     return "index";
   }
@@ -123,29 +135,44 @@ public class WebshopController {
   }
 
   @GetMapping("/more-filters")
-  public String moreFilters(){
+  public String moreFilters(Model model) {
+    model.addAttribute("currencyOptions", Arrays.asList(Currency.values()));
+    model.addAttribute("currency", "Kč");
+    model.addAttribute("items", items);
     return "filters";
+  }
+
+  public String getCurrencySymbol(Currency currency) {
+    if (currency.equals(Currency.HUF)) {
+      return "Ft";
+    } else if (currency.equals(Currency.EUR)) {
+      return "€";
+    }
+    return "Kč";
   }
 
   @GetMapping("/foodAndBeverages")
   public String getFoodAndBev(Model model) {
+    model.addAttribute("currency", "Kč");
     model.addAttribute("items", filterByType(ItemType.FOOD_AND_BEVERAGES));
 
-    return "index";
+    return "filters";
   }
 
   @GetMapping("/clothesAndShoes")
   public String getClothesAndShoes(Model model) {
+    model.addAttribute("currency", "Kč");
     model.addAttribute("items", filterByType(ItemType.CLOTHES_AND_SHOES));
 
-    return "index";
+    return "filters";
   }
 
   @GetMapping("/electronics")
   public String getElectronics(Model model) {
+    model.addAttribute("currency", "Kč");
     model.addAttribute("items", filterByType(ItemType.ELECTRONICS));
 
-    return "index";
+    return "filters";
   }
 
   public List<ShopItem> filterByType(ItemType type) {
@@ -160,7 +187,7 @@ public class WebshopController {
     model.addAttribute("currency", "€");
     model.addAttribute("items", euroConverter());
 
-    return "index";
+    return "filters";
   }
 
   public List<ShopItem> euroConverter() {
@@ -176,20 +203,28 @@ public class WebshopController {
     model.addAttribute("currency", "Ft");
     model.addAttribute("items", hufConverter());
 
-    return "index";
+    return "filters";
   }
 
   public List<ShopItem> hufConverter() {
     return items.stream()
         .map(i -> i.convertPrice(kcToHuf))
         .collect(Collectors.toList());
-
   }
+
+  @GetMapping("/kcz")
+  public String getDefaultPrice(Model model) {
+    model.addAttribute("currency", "Kč");
+    model.addAttribute("items", items);
+    return "filters";
+  }
+
 
   @GetMapping("/above")
   public String above(Integer priceFilter, Model model) {
+    model.addAttribute("currency", "Kč");
     model.addAttribute("items", filterAbove(priceFilter));
-    return "index";
+    return "filters";
   }
 
   public List<ShopItem> filterAbove(Integer priceFilter) {
@@ -200,8 +235,9 @@ public class WebshopController {
 
   @GetMapping("/below")
   public String below(Integer priceFilter, Model model) {
+    model.addAttribute("currency", "Kč");
     model.addAttribute("items", filterBelow(priceFilter));
-    return "index";
+    return "filters";
   }
 
   public List<ShopItem> filterBelow(Integer priceFilter) {
@@ -212,8 +248,9 @@ public class WebshopController {
 
   @GetMapping("/exactly")
   public String exactly(Integer priceFilter, Model model) {
+    model.addAttribute("currency", "Kč");
     model.addAttribute("items", filterExactly(priceFilter));
-    return "index";
+    return "filters";
   }
 
   public List<ShopItem> filterExactly(Integer priceFilter) {

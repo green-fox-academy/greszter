@@ -15,13 +15,16 @@
     <a href="/foodAndBeverages">Foods and Beverages</a>
     <a href="/clothesAndShoes">Clothes and Shoes</a>
     <a href="/electronics">Electronics</a>
-    <a href="/" class="currency">Kč</a>
+    <a href="/kcz" class="currency">Kč</a>
     <a href="/eur" class="currency">€</a>
     <a href="/huf" class="currency">Ft</a>
 </div>
 <div>
     <form action="/filter" method="get">
         <input type="number" placeholder="Filter by price..." name="priceFilter"/>
+        <select path="/currencies">
+            <option th:each="currencyOption : ${currencyOptions}" th:value = "${currencyOption}" th:label = "${currencyOption}"/>
+        </select>
         <button type="submit" formaction="/above">Above</button>
         <button type="submit" formaction="/below">Below</button>
         <button type="submit" formaction="/exactly">Exactly</button>
