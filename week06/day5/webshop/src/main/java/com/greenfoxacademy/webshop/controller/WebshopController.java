@@ -17,18 +17,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public class WebshopController {
 
+  private Double kcToEur = 0.037;
+  private Double kcToHuf = 13.22;
+
   List<ShopItem> items = Arrays.asList(
-    new ShopItem("Running Shoes", "Nike running shoes for everyday sport", 1000, 5, ItemType.CLOTHES_AND_SHOES),
-    new ShopItem("Printer", "Some HP printer", 3000, 2, ItemType.ELECTRONICS),
-    new ShopItem("Coca Cola", "0.5l standard coke", 25, 0, ItemType.FOOD_AND_BEVERAGES),
-    new ShopItem("Wokin", "Chicken with fired rice and WOKIN sauce", 119, 100, ItemType.FOOD_AND_BEVERAGES),
-    new ShopItem("T-shirt", "Blue with a corgi on a bike", 300, 1, ItemType.CLOTHES_AND_SHOES),
-    new ShopItem("Nike bag", "Black backpack", 1500, 4, ItemType.CLOTHES_AND_SHOES)
+    new ShopItem("Running Shoes", "Nike running shoes for everyday sport", 1000.00, 5, ItemType.CLOTHES_AND_SHOES),
+    new ShopItem("Printer", "Some HP printer", 3000.00, 2, ItemType.ELECTRONICS),
+    new ShopItem("Coca Cola", "0.5l standard coke", 25.00, 0, ItemType.FOOD_AND_BEVERAGES),
+    new ShopItem("Wokin", "Chicken with fired rice and WOKIN sauce", 119.00, 100, ItemType.FOOD_AND_BEVERAGES),
+    new ShopItem("T-shirt", "Blue with a corgi on a bike", 300.00, 1, ItemType.CLOTHES_AND_SHOES),
+    new ShopItem("Nike bag", "Black backpack", 1500.00, 4, ItemType.CLOTHES_AND_SHOES)
 );
 
   @GetMapping("/")
   public String getItems(Model model) {
-    model.addAttribute("items", getItems());
+    model.addAttribute("currency", "Kč");
+    model.addAttribute("items", items);
     return "index";
   }
 
@@ -56,7 +60,7 @@ public class WebshopController {
 
   public List<ShopItem> cheapestToMostExpensive() {
     return items.stream()
-        .sorted((i1, i2) -> i1.getPriceNumber().compareTo(i2.getPriceNumber()))
+        .sorted((i1, i2) -> i1.getPrice().compareTo(i2.getPrice()))
         .collect(Collectors.toList());
   }
 
@@ -98,7 +102,7 @@ public class WebshopController {
 
   public ShopItem getMostExpensive() {
     Optional<ShopItem> mostExpensive = items.stream()
-        .max(Comparator.comparing(ShopItem::getPriceNumber));
+        .max(Comparator.comparing(ShopItem::getPrice));
 
     return mostExpensive.isPresent()?mostExpensive.get():new ShopItem("Unknown", null, null, null, null);
   }
@@ -143,18 +147,36 @@ public class WebshopController {
         .collect(Collectors.toList());
   }
 
-//  @GetMapping("/eur")
-//  public String getPriceInEuro(Model model){
-//    model.addAttribute("items", euroConverter());
-//
-//    return "index";
-//  }
-//
-//  public void euroConverter(){
-//    items.stream()
-//        .forEach(i -> i.setPrice(i.getPrice((Currency.EURO)));
-//  }
+  @GetMapping("/eur")
+  public String getPriceInEuro(Model model){
 
+    model.addAttribute("currency", "€");
+    model.addAttribute("items", euroConverter());
 
+    return "index";
+  }
+
+  public List<ShopItem> euroConverter(){
+    List<ShopItem> EUR = items.stream()
+        .map(i -> i.convertPrice(kcToEur))
+        .collect(Collectors.toList());
+
+    return EUR;
+  }
+
+  @GetMapping("/huf")
+  public String getPriceInHuf(Model model){
+    model.addAttribute("currency", "Ft");
+    model.addAttribute("items", hufConverter());
+
+    return "index";
+  }
+
+  public List<ShopItem> hufConverter(){
+    List<ShopItem> HUF =  items.stream()
+        .map(i -> i.convertPrice(kcToHuf))
+        .collect(Collectors.toList());
+    return HUF;
+  }
 
 }

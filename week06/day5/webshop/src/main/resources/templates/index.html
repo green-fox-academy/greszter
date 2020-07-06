@@ -23,9 +23,9 @@
     <a href="/foodAndBeverages">Foods and Beverages</a>
     <a href="/clothesAndShoes">Clothes and Shoes</a>
     <a href="/electronics">Electronics</a>
-    <a href="/czk">Czech Koruna</a>
-    <a href="/eur">EURO</a>
-    <a href="/huf">Forint</a>
+    <a href="/" class="currency">Kč</a>
+    <a href="/eur" class="currency">€</a>
+    <a href="/huf" class="currency">Ft</a>
 </div>
 
 <form action="/search" method="get">
@@ -43,8 +43,8 @@
     <tr th:each="item : ${items}">
         <td th:text="${item.name}"></td>
         <td th:text="${item.description}"></td>
-        <td th:text="${item.price}"></td>
-        <td th:text="${item.quantityOfStock}"></td>
+        <td th:text="${item.price} + ' ' + ${currency}" class="right"></td>
+        <td th:text="${item.quantityOfStock}" class="right"></td>
     </tr>
 </table>
 

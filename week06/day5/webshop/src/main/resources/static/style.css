@@ -57,3 +57,12 @@ a#head {
     text-decoration: none;
     background: none;
 }
+
+a.currency {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+td.right {
+    text-align: right;
+}
