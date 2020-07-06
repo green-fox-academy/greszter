@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/style.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Slab&display=swap" rel="stylesheet">
     <title>Webshop</title>
 </head>
@@ -27,6 +27,14 @@
     <a href="/eur" class="currency">€</a>
     <a href="/huf" class="currency">Ft</a>
 </div>
+<div>
+    <form action="/filter" method="get">
+        <input type="number" placeholder="Filter by price..." name="priceFilter"/>
+        <button type="submit" formaction="/above">Above</button>
+        <button type="submit" formaction="/below">Below</button>
+        <button type="submit" formaction="/exactly">Exactly</button>
+    </form>
+</div>
 
 <form action="/search" method="get">
     <input type="text" placeholder="Search here..." name="search"/>
@@ -43,7 +51,7 @@
     <tr th:each="item : ${items}">
         <td th:text="${item.name}"></td>
         <td th:text="${item.description}"></td>
-        <td th:text="${item.price} + ' ' + ${currency}" class="right"></td>
+        <td th:text="${item.getPriceAsString()} + ' ' + ${currency}" class="right"></td>
         <td th:text="${item.quantityOfStock}" class="right"></td>
     </tr>
 </table>

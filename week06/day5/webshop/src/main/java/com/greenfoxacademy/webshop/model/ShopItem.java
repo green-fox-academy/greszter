@@ -37,9 +37,13 @@ public class ShopItem {
     this.description = description;
   }
 
-  public String getPrice() {
+  public Double getPrice() {
+    return this.price;
+  }
+  public String getPriceAsString(){
     return String.format("%.2f", this.price);
   }
+
 
   public void setPrice(Double price) {
     this.price = price;
@@ -56,6 +60,5 @@ public class ShopItem {
   public ShopItem convertPrice(Double change){
     return new ShopItem(this.name, this.description, this.price * change, this.quantityOfStock, this.type);
   }
-
 
 }
