@@ -1,4 +1,4 @@
-package com.greenfoxacademy.webapplication.hellobeanworld.Model;
+package com.greenfoxacademy.webapplication.hellobeanworld.Service;
 
 import java.time.LocalDateTime;
 import org.springframework.stereotype.Service;

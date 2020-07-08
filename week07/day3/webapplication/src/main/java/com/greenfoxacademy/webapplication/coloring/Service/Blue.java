@@ -1,6 +1,4 @@
-package com.greenfoxacademy.webapplication.coloring.Model;
-
-import com.greenfoxacademy.webapplication.coloring.Service.MyColor;
+package com.greenfoxacademy.webapplication.coloring.Service;
 
 public class Blue implements MyColor {
   @Override

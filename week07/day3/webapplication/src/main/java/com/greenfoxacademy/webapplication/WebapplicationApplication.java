@@ -1,6 +1,6 @@
 package com.greenfoxacademy.webapplication;
 
-import com.greenfoxacademy.webapplication.hellobeanworld.Model.Printer;
+import com.greenfoxacademy.webapplication.hellobeanworld.Service.Printer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
