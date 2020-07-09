@@ -1,16 +1,16 @@
 package com.greenfoxacademy.programmerfoxclub.Service;
 
 import com.greenfoxacademy.programmerfoxclub.Model.Fox;
-import com.greenfoxacademy.programmerfoxclub.Model.Tricks;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 @Service
-public class FoxList {
+public class FoxService {
 
-  List<Fox> foxes = new ArrayList<>();
+  private List<Fox> foxes = new ArrayList<>();
+  private Fox loggedInFox = new Fox();
 
   public List<Fox> addFox(String name, String food, String drink){
     foxes.add(new Fox(name, food, drink));
@@ -19,6 +19,14 @@ public class FoxList {
 
   public List<Fox> getFoxes(){
     return foxes;
+  }
+
+  public Fox getLoggedInFox() {
+    return loggedInFox;
+  }
+
+  public void setLoggedInFox(String name) {
+    this.loggedInFox = loggedInFox;
   }
 
   public Fox getFox(String name){

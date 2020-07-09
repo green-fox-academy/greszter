@@ -15,7 +15,12 @@ public class Fox {
     this.name = name;
     this.food = food;
     this.drink = drink;
+  }
 
+  public Fox(){
+    name = "Mr. Green";
+    food = "pizza";
+    drink = "lemonade";
   }
 
   @Override
@@ -32,7 +37,7 @@ public class Fox {
   }
 
   public String getTricks() {
-    return tricks.toString();
+    return tricks.isEmpty()?"No tricks yet. Time to learn something new...":tricks.toString();
   }
 
   public int getTrickNumber(){
