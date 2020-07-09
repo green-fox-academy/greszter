@@ -8,11 +8,12 @@
 
 <ul>
     <li><a href="/information">Information</a></li>
+    <li><a href="/login">Login</a></li>
 </ul>
 
 <img src="greenfox.png" alt="fox_image">
 
-<p th:text="'This is Mr. Fox. Currently living on pizza and lemonade. He knows ' + ${trickNumber} + ' tricks.'"></p>
+<p th:text="'This is ' + ${name} + '. Currently living on ' + ${food} + ' and ' + ${drink} + '. He knows ' + ${trickNumber} + ' tricks.'"></p>
 
 <h1>Known tricks</h1>
 
