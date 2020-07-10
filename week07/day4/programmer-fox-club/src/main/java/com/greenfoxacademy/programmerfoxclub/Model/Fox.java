@@ -16,12 +16,6 @@ public class Fox {
     this.drink = drink;
   }
 
-  public Fox(){
-    name = "Mr. Green";
-    food = "pizza";
-    drink = "lemonade";
-  }
-
   @Override
   public String toString() {
     return name;
@@ -36,9 +30,6 @@ public class Fox {
   }
 
   public List<String> getTricks() {
-    if (tricks.isEmpty()) {
-      tricks.add("No tricks yet. Time to learn something new...");
-    }
     return tricks;
   }
 

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class FoxService {
 
   private List<Fox> foxes = new ArrayList<>();
-  private Fox loggedInFox = new Fox();
+  private Fox loggedInFox;
 
   public List<Fox> addFox(String name, String food, String drink){
     foxes.add(new Fox(name, food, drink));

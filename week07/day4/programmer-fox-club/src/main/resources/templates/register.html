@@ -1,21 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Register</title>
 </head>
 <body>
 
-<p>Please provide your fox's name, food, drink, tricklist, so you can associate it to your pet!</p>
+<p>Please provide your fox's name, food, drink, so you can associate it to your pet!</p>
 <form action="/register" method="post">
     <label for="name">Name</label>
     <input type="text" id="name" name="name">
     <label for="food">Food</label>
-    <input type="text" id="food" name="food">
-    <label for="drink">Drink</label>
-    <input type="text" id="drink" name="drink">
-<!--    <label for="tricks">Name</label>
-    <input type="text" id="tricks" name="tricks">-->
+    <select name="food" id="food">
+        <option th:each="foodOptions : ${foodOptions}" th:value="${foodOptions}"
+                th:label="${foodOptions}"></option>
+    </select>
+    <label for="drink"> Drink</label>
+    <select name="drink" id="drink">
+        <option th:each="drinkOptions : ${drinkOptions}" th:value="${drinkOptions}"
+                th:label="${drinkOptions}"></option>
+    </select>
     <button type="submit">Register</button>
 </form>
 
