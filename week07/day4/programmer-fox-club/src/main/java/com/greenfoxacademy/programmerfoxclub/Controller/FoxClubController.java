@@ -1,10 +1,6 @@
 package com.greenfoxacademy.programmerfoxclub.Controller;
 
-import com.greenfoxacademy.programmerfoxclub.Model.Drink;
-import com.greenfoxacademy.programmerfoxclub.Model.Food;
 import com.greenfoxacademy.programmerfoxclub.Service.FoxService;
-import java.util.Arrays;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -80,6 +76,28 @@ public class FoxClubController {
     } else {
       foxService.getLoggedInFox().setFood(food);
       foxService.getLoggedInFox().setDrink(drink);
+      return "redirect:/?name=" + foxService.getLoggedInFox().getName();
+    }
+  }
+
+  @GetMapping("/trickCenter")
+  public String getTricks(Model model){
+    model.addAttribute("tricks", foxService.getTrickOptions());
+    return "trick";
+  }
+
+  @PostMapping("/trickCenter")
+  public String setTricks(@RequestParam String trick){
+    if (foxService.getLoggedInFox().getName()=="Mr. Green") {
+      return "redirect:/login";
+    } else if (foxService.getLoggedInFox().getName()!="Mr. Green" && foxService.getLoggedInFox().getTricks().contains("No tricks yet. Time to learn something new...")){
+      foxService.getLoggedInFox().getTricks().clear();
+      foxService.getLoggedInFox().addNewTrick(trick);
+      return "redirect:/?name=" + foxService.getLoggedInFox().getName();
+    } else if (foxService.getLoggedInFox().getName()!="Mr. Green" && foxService.getLoggedInFox().getTricks().contains(trick)){
+      return "redirect:/?name=" + foxService.getLoggedInFox().getName();
+    } else {
+      foxService.getLoggedInFox().addNewTrick(trick);
       return "redirect:/?name=" + foxService.getLoggedInFox().getName();
     }
   }

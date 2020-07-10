@@ -3,6 +3,7 @@ package com.greenfoxacademy.programmerfoxclub.Service;
 import com.greenfoxacademy.programmerfoxclub.Model.Drink;
 import com.greenfoxacademy.programmerfoxclub.Model.Food;
 import com.greenfoxacademy.programmerfoxclub.Model.Fox;
+import com.greenfoxacademy.programmerfoxclub.Model.Trick;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -56,6 +57,16 @@ public class FoxService {
   public List<String> getDrinks(){
     return Arrays.stream(Drink.values())
         .map(d -> d.toString().toLowerCase().contains("_")?d.toString().toLowerCase().replace("_", " "):d.toString().toLowerCase())
+        .collect(Collectors.toList());
+  }
+
+  public List<String> getTrickOptions(){
+    return Arrays.stream(Trick.values())
+        .map(t -> t.toString().toLowerCase().contains("_")?t.toString().toLowerCase().replace("_", " "):t.toString().toLowerCase())
+        .collect(Collectors.toList())
+        .stream()
+        .map(t -> t.toString().contains("java")?t.toString().replace("java", "JAVA"):t.toString())
+        .map(t -> t.toString().contains("html")?t.toString().replace("html", "HTML"):t.toString())
         .collect(Collectors.toList());
   }
 

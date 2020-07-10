@@ -2,14 +2,13 @@ package com.greenfoxacademy.programmerfoxclub.Model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Fox {
 
   private String name;
   private String food;
   private String drink;
-  private List<Tricks> tricks = new ArrayList<>();
+  private List<String> tricks = new ArrayList<>();
 
   public Fox(String name, String food, String drink) {
     this.name = name;
@@ -36,16 +35,19 @@ public class Fox {
     this.name = name;
   }
 
-  public String getTricks() {
-    return tricks.isEmpty()?"No tricks yet. Time to learn something new...":tricks.toString();
+  public List<String> getTricks() {
+    if (tricks.isEmpty()) {
+      tricks.add("No tricks yet. Time to learn something new...");
+    }
+    return tricks;
   }
 
   public int getTrickNumber(){
     return tricks.isEmpty()?0:tricks.size();
   }
 
-  public void setTricks(List<Tricks> tricks) {
-    this.tricks = tricks;
+  public void addNewTrick(String trick) {
+    this.tricks.add(trick);
   }
 
   public String getFood() {
