@@ -4,6 +4,7 @@ import com.greenfoxacademy.programmerfoxclub.Model.Drink;
 import com.greenfoxacademy.programmerfoxclub.Model.Food;
 import com.greenfoxacademy.programmerfoxclub.Service.FoxService;
 import java.util.Arrays;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,18 +23,13 @@ public class FoxClubController {
   }
 
   @GetMapping("/")
-  public String getMain(@RequestParam (required = false) String name, Model model) {
-    if (name.equals(null)) {
-      return "redirect:/login";
-    } else {
-      model.addAttribute("name", name);
-      model.addAttribute("food", foxService.getFox(name).getFood());
-      model.addAttribute("drink", foxService.getFox(name).getDrink());
-      model.addAttribute("trickNumber", foxService.getFox(name).getTrickNumber());
-      model.addAttribute("trick", foxService.getFox(name).getTricks());
-      foxService.setLoggedInFox(name);
-      return "index";
-    }
+  public String getMain(@RequestParam(required = false) String name, Model model) {
+    model.addAttribute("name", name);
+    model.addAttribute("food", foxService.getFox(name).getFood());
+    model.addAttribute("drink", foxService.getFox(name).getDrink());
+    model.addAttribute("trickNumber", foxService.getFox(name).getTrickNumber());
+    model.addAttribute("trick", foxService.getFox(name).getTricks());
+    return "index";
   }
 
   @GetMapping("/information")
@@ -48,6 +44,7 @@ public class FoxClubController {
 
   @PostMapping("/login")
   public String loginPost(@RequestParam String name) {
+    foxService.setLoggedInFox(name);
     if (name.isEmpty()) {
       return "redirect:/login";
     } else if (foxService.toString().contains(name)) {
@@ -70,18 +67,22 @@ public class FoxClubController {
   }
 
   @GetMapping("/nutritionStore")
-  public String getNutrition(Model model){
-    model.addAttribute("foodOptions", Arrays.asList(Food.values()));
-    model.addAttribute("drinkOptions", Arrays.asList(Drink.values()));
-
+  public String getNutrition(Model model) {
+    model.addAttribute("foodOptions", foxService.getFoods());
+    model.addAttribute("drinkOptions", foxService.getDrinks());
     return "nutrition";
   }
 
   @PostMapping("/nutritionStore")
-  public String setNutrition(@RequestParam String food, @RequestParam String drink){
-    return "nutritionStore";
+  public String setNutrition(@RequestParam String food, @RequestParam String drink) {
+    if (foxService.getLoggedInFox().getName()=="Mr. Green") {
+      return "redirect:/login";
+    } else {
+      foxService.getLoggedInFox().setFood(food);
+      foxService.getLoggedInFox().setDrink(drink);
+      return "redirect:/?name=" + foxService.getLoggedInFox().getName();
+    }
   }
-
 
 
 }
