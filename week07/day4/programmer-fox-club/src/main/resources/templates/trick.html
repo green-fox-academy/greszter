@@ -7,14 +7,14 @@
 <body>
 
 <ul>
-    <li><a href="/">Information</a></li>
-    <li><a href="/nutritionStore">Nutrition Store</a></li>
-    <li><a href="/trickCenter">Trick Center</a></li>
+    <li><a th:href="'/?name=' + ${name}">Information</a></li>
+    <li><a th:href="'/nutritionStore/?name=' + ${name}">Nutrition Store</a></li>
+    <li><a th:href="'/trickCenter/?name=' + ${name}">Trick Center</a></li>
     <li><a href="/">Action History</a></li>
 </ul>
 
 <p th:if="${errorMessage}" th:text="${errorMessage}"></p>
-<form th:unless="${emptyList}" action="/trickCenter" method="post">
+<form th:unless="${emptyList}" th:action="'/trickCenter/?name=' + ${name}" method="post">
     <label for="trick">Tricks</label>
     <select name="trick" id="trick">
         <option th:each="tricks : ${tricks}" th:value="${tricks}"

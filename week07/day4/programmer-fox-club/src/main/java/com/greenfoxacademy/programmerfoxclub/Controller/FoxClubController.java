@@ -19,7 +19,7 @@ public class FoxClubController {
   }
 
   @GetMapping("/")
-  public String getMain(@RequestParam(required = false) String name, Model model) {
+  public String getMain(@RequestParam (required = false) String name, Model model) {
     if (name == null) {
       return "redirect:/login";
     } else {
@@ -43,7 +43,6 @@ public class FoxClubController {
 
   @PostMapping("/login")
   public String loginPost(@RequestParam String name) {
-    foxService.setLoggedInFox(name);
     if (name.isEmpty()) {
       return "redirect:/login/?error=true";
     } else if (foxService.toString().contains(name)) {
@@ -54,7 +53,7 @@ public class FoxClubController {
   }
 
   @GetMapping("/register")
-  public String register(@RequestParam(required = false) String name, Model model) {
+  public String register(Model model) {
     model.addAttribute("foodOptions", foxService.getFoods());
     model.addAttribute("drinkOptions", foxService.getDrinks());
     return "register";
@@ -69,44 +68,46 @@ public class FoxClubController {
 
   @GetMapping("/nutritionStore")
   public String getNutrition(Model model, @RequestParam(required = false) String name) {
+    model.addAttribute("name", name);
     model.addAttribute("foodOptions", foxService.getFoods());
     model.addAttribute("drinkOptions", foxService.getDrinks());
     return "nutrition";
   }
 
   @PostMapping("/nutritionStore")
-  public String setNutrition(@RequestParam String food, @RequestParam String drink) {
-    if (foxService.getLoggedInFox() == null) {
+  public String setNutrition(@RequestParam String food, @RequestParam String drink, @RequestParam (required = false) String name) {
+    if (foxService.getFox(name) == null) {
       return "redirect:/login";
     } else {
-      foxService.getLoggedInFox().setFood(food);
-      foxService.getLoggedInFox().setDrink(drink);
-      return "redirect:/?name=" + foxService.getLoggedInFox().getName();
+      foxService.getFox(name).setFood(food);
+      foxService.getFox(name).setDrink(drink);
+      return "redirect:/?name=" + name;
     }
   }
 
   @GetMapping("/trickCenter")
   public String getTricks(Model model, @RequestParam(required = false) Boolean error,
                           @RequestParam(required = false) String name) {
+    model.addAttribute("name", name);
     if (error != null && error) {
       model.addAttribute("errorMessage", "You can't learn it twice");
-    } else if (foxService.getTrickOptions().isEmpty()) {
+    } else if (foxService.getTrickOptions(name).isEmpty()) {
       model.addAttribute("emptyList", "Congratulations, you know everything!!!");
     } else {
-      model.addAttribute("tricks", foxService.getTrickOptions());
+      model.addAttribute("tricks", foxService.getTrickOptions(name));
     }
     return "trick";
   }
 
   @PostMapping("/trickCenter")
-  public String setTricks(@RequestParam(required = false) String trick) {
-    if (foxService.getLoggedInFox() == null) {
+  public String setTricks(@RequestParam (required = false) String trick, @RequestParam(required = false) String name) {
+    if (foxService.getFox(name) == null) {
       return "redirect:/login";
-    } else if (foxService.getLoggedInFox().getTricks().contains(trick)) {
+    } else if (foxService.getFox(name).getTricks().contains(trick)) {
       return "redirect:/trickCenter/?error=true";
     } else {
-      foxService.getLoggedInFox().addNewTrick(trick);
-      return "redirect:/?name=" + foxService.getLoggedInFox().getName();
+      foxService.getFox(name).addNewTrick(trick);
+      return "redirect:/?name=" + name;
     }
   }
 

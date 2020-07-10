@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 public class FoxService {
 
   private List<Fox> foxes = new ArrayList<>();
-  private Fox loggedInFox;
 
   public List<Fox> addFox(String name, String food, String drink) {
     foxes.add(new Fox(name, food, drink));
@@ -23,14 +22,6 @@ public class FoxService {
 
   public List<Fox> getFoxes() {
     return foxes;
-  }
-
-  public Fox getLoggedInFox() {
-    return loggedInFox;
-  }
-
-  public void setLoggedInFox(String name) {
-    this.loggedInFox = getFox(name);
   }
 
   public Fox getFox(String name) {
@@ -62,13 +53,13 @@ public class FoxService {
         .collect(Collectors.toList());
   }
 
-  public List<String> getTrickOptions() {
+  public List<String> getTrickOptions(String name) {
     return Arrays.stream(Trick.values())
         .map(t -> t.toString().toLowerCase().contains("_") ?
             t.toString().toLowerCase().replace("_", " ") : t.toString().toLowerCase())
         .map(t -> t.contains("java") ? t.replace("java", "JAVA") : t)
         .map(t -> t.contains("html") ? t.replace("html", "HTML") : t)
-        .filter(t -> !loggedInFox.getTricks().contains(t))
+        .filter(t -> !getFox(name).getTricks().contains(t))
         .collect(Collectors.toList());
   }
 
