@@ -19,7 +19,7 @@
 <p th:text="'This is ' + ${name} + '. Currently living on ' + ${food} + ' and ' + ${drink} + '. He knows ' + ${trickNumber} + ' trick(s).'"></p>
 
 <h1>Known tricks</h1>
-<p th:if="${trick.isEmpty()}" >No tricks yet. Time to learn something new...</p>
+<p th:if="${trick.isEmpty()}">No tricks yet. Time to learn something new...</p>
 <ul th:each="trick : ${trick}">
     <li th:text="${trick}"></li>
 </ul>

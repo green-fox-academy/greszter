@@ -19,8 +19,8 @@ public class FoxClubController {
   }
 
   @GetMapping("/")
-  public String getMain(@RequestParam (required = false) String name, Model model) {
-    if (name==null) {
+  public String getMain(@RequestParam(required = false) String name, Model model) {
+    if (name == null) {
       return "redirect:/login";
     } else {
       model.addAttribute("name", name);
@@ -33,7 +33,11 @@ public class FoxClubController {
   }
 
   @GetMapping("/login")
-  public String login(@RequestParam(required = false) String name) {
+  public String login(@RequestParam(required = false) String name, Model model,
+                      @RequestParam(required = false) Boolean error) {
+    if (error != null && error) {
+      model.addAttribute("errorMessage", "Please add a real name!");
+    }
     return "login";
   }
 
@@ -41,7 +45,7 @@ public class FoxClubController {
   public String loginPost(@RequestParam String name) {
     foxService.setLoggedInFox(name);
     if (name.isEmpty()) {
-      return "redirect:/login";
+      return "redirect:/login/?error=true";
     } else if (foxService.toString().contains(name)) {
       return "redirect:/?name=" + name;
     } else {
@@ -57,7 +61,8 @@ public class FoxClubController {
   }
 
   @PostMapping("/register")
-  public String registerFox(@RequestParam String name, @RequestParam String food, @RequestParam String drink) {
+  public String registerFox(@RequestParam String name, @RequestParam String food,
+                            @RequestParam String drink) {
     foxService.addFox(name, food, drink);
     return "redirect:/login";
   }
