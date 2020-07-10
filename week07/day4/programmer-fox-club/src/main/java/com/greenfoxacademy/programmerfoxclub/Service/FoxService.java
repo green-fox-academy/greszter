@@ -16,12 +16,12 @@ public class FoxService {
   private List<Fox> foxes = new ArrayList<>();
   private Fox loggedInFox;
 
-  public List<Fox> addFox(String name, String food, String drink){
+  public List<Fox> addFox(String name, String food, String drink) {
     foxes.add(new Fox(name, food, drink));
     return foxes;
   }
 
-  public List<Fox> getFoxes(){
+  public List<Fox> getFoxes() {
     return foxes;
   }
 
@@ -33,7 +33,7 @@ public class FoxService {
     this.loggedInFox = getFox(name);
   }
 
-  public Fox getFox(String name){
+  public Fox getFox(String name) {
     return foxes.stream()
         .filter(f -> f.getName().equals(name))
         .findFirst()
@@ -48,25 +48,27 @@ public class FoxService {
         .toString();
   }
 
-  public List<String> getFoods(){
+  public List<String> getFoods() {
     return Arrays.stream(Food.values())
-        .map(f -> f.toString().toLowerCase().contains("_")?f.toString().toLowerCase().replace("_", " "):f.toString().toLowerCase())
+        .map(f -> f.toString().toLowerCase().contains("_") ?
+            f.toString().toLowerCase().replace("_", " ") : f.toString().toLowerCase())
         .collect(Collectors.toList());
   }
 
-  public List<String> getDrinks(){
+  public List<String> getDrinks() {
     return Arrays.stream(Drink.values())
-        .map(d -> d.toString().toLowerCase().contains("_")?d.toString().toLowerCase().replace("_", " "):d.toString().toLowerCase())
+        .map(d -> d.toString().toLowerCase().contains("_") ?
+            d.toString().toLowerCase().replace("_", " ") : d.toString().toLowerCase())
         .collect(Collectors.toList());
   }
 
-  public List<String> getTrickOptions(){
+  public List<String> getTrickOptions() {
     return Arrays.stream(Trick.values())
-        .map(t -> t.toString().toLowerCase().contains("_")?t.toString().toLowerCase().replace("_", " "):t.toString().toLowerCase())
-        .collect(Collectors.toList())
-        .stream()
-        .map(t -> t.toString().contains("java")?t.toString().replace("java", "JAVA"):t.toString())
-        .map(t -> t.toString().contains("html")?t.toString().replace("html", "HTML"):t.toString())
+        .map(t -> t.toString().toLowerCase().contains("_") ?
+            t.toString().toLowerCase().replace("_", " ") : t.toString().toLowerCase())
+        .map(t -> t.contains("java") ? t.replace("java", "JAVA") : t)
+        .map(t -> t.contains("html") ? t.replace("html", "HTML") : t)
+        .filter(t -> !loggedInFox.getTricks().contains(t))
         .collect(Collectors.toList());
   }
 

@@ -33,8 +33,8 @@ public class Fox {
     return tricks;
   }
 
-  public int getTrickNumber(){
-    return tricks.isEmpty()?0:tricks.size();
+  public int getTrickNumber() {
+    return tricks.isEmpty() ? 0 : tricks.size();
   }
 
   public void addNewTrick(String trick) {

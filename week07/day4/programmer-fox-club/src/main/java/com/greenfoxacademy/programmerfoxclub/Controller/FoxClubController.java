@@ -90,8 +90,11 @@ public class FoxClubController {
                           @RequestParam(required = false) String name) {
     if (error != null && error) {
       model.addAttribute("errorMessage", "You can't learn it twice");
+    } else if (foxService.getTrickOptions().isEmpty()) {
+      model.addAttribute("emptyList", "Congratulations, you know everything!!!");
+    } else {
+      model.addAttribute("tricks", foxService.getTrickOptions());
     }
-    model.addAttribute("tricks", foxService.getTrickOptions());
     return "trick";
   }
 

@@ -13,8 +13,8 @@
     <li><a href="/">Action History</a></li>
 </ul>
 
-<form action="/trickCenter" method="post">
-
+<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
+<form th:unless="${emptyList}" action="/trickCenter" method="post">
     <label for="trick">Tricks</label>
     <select name="trick" id="trick">
         <option th:each="tricks : ${tricks}" th:value="${tricks}"
@@ -22,8 +22,6 @@
     </select>
     <button type="submit">Learn</button>
 </form>
-
-<p th:if="${errorMessage}" th:text="${errorMessage}"></p>
-
+<p th:if="${emptyList}" th:text="${emptyList}"></p>
 </body>
 </html>
