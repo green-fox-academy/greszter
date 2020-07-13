@@ -8,9 +8,20 @@
 
 <h1>Todos for today:</h1>
 
-<ul th:each="todos:${todos}">
-    <li th:text="${todos}"></li>
-</ul>
+<table>
+    <thead>
+    <td>ID</td>
+    <td>ACTION</td>
+    <td>DONE</td>
+    <td>URGENT</td>
+    </thead>
+    <tr th:each="todos:${todos}">
+        <td th:text="${todos.getId()}"></td>
+        <td th:text="${todos.getTitle()}"></td>
+        <td th:text="${todos.isDone()}"></td>
+        <td th:text="${todos.isUrgent()}"></td>
+    </tr>
+</table>
 
 </body>
 </html>
