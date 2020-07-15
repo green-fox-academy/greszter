@@ -2,20 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <title>Todo CRUD App</title>
 </head>
 <body>
-
 <h1>Todos for today:</h1>
 
-<a href="/addtodo">Add new todo</a>
+<a href="/addtodo" class="text-secondary">Add new todo</a>
+<br>
 
-<table>
-    <thead>
-    <td>ID</td>
-    <td>ACTION</td>
-    <td>DONE</td>
-    <td>URGENT</td>
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th>Id</th>
+        <th>Action</th>
+        <th>Done</th>
+        <th>Urgent</th>
+        <th>Delete</th>
+        <th>Edit</th>
+    </tr>
+
     </thead>
     <tr th:each="todos:${todos}">
         <td th:text="${todos.getId()}"></td>
@@ -23,9 +29,12 @@
         <td th:text="${todos.isDone()}"></td>
         <td th:text="${todos.isUrgent()}"></td>
         <td><a th:href="@{'/{id}/delete' (id=${todos.getId()})}">Delete</a>
+        <td><a th:href="@{'/{id}/update' (id=${todos.getId()})}">Edit</a>
         </td>
     </tr>
 </table>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

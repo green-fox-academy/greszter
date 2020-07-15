@@ -1,4 +1,4 @@
-package com.greenfoxacademy.connection_with_mysql.Model;
+package com.greenfoxacademy.connection_with_mysql.model;
 
 import javax.persistence.*;
 
@@ -9,8 +9,8 @@ public class Todo {
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
   private String title;
-  private boolean urgent;
-  private boolean done;
+  private Boolean urgent;
+  private Boolean done;
 
   public Todo() {
   }

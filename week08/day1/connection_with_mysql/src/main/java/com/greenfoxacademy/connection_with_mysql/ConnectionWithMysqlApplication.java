@@ -1,12 +1,7 @@
 package com.greenfoxacademy.connection_with_mysql;
 
-import com.greenfoxacademy.connection_with_mysql.Model.Todo;
-import com.greenfoxacademy.connection_with_mysql.Repository.TodoRepository;
-import com.sun.xml.bind.v2.runtime.output.SAXOutput;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class ConnectionWithMysqlApplication {

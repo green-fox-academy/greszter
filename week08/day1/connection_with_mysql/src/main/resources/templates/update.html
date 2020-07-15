@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <title>Add todo</title>
+    <title>Update todo</title>
 </head>
 <body>
-<form action="/addtodo" th:object="${newtodo}" method="post">
-    <input type="text" class="form-control-3" th:field="*{title}" />
-    <button type="submit" class="btn btn-secondary">Add</button>
+<form th:action="@{'/' + ${updatedTodo.getId()} + '/update'}" method="post">
+    <input type="text" class="form-control-3" th:value="${updatedTodo.getTitle()}" name="title"/>
+    <label for="done">Done</label>
+    <input type="checkbox" id="done" name="done" value="done"/>
+    <label for="urgent">Urgent</label>
+    <input type="checkbox" id="urgent" name="urgent" value="urgent"/>
+    <button type="submit" class="btn btn-secondary">Update</button>
 </form>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
