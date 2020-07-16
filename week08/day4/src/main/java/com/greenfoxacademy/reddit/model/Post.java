@@ -27,4 +27,13 @@ public class Post {
     this.title = title;
     points = 0;
   }
+
+  public void setPoints(Integer points) {
+    this.points = points;
+  }
+
+  public Integer getPoints() {
+    return points;
+  }
+
 }

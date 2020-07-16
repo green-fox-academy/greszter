@@ -12,8 +12,8 @@
 <table>
     <tr th:each="post : ${posts}">
         <td th:text="${post.points}"></td>
-        <td>+</td>
-        <td>-</td>
+        <td><a th:href="@{'/{id}/addpoint' (id=${post.id})}">+</a></td>
+        <td><a th:href="@{'/{id}/subtractpoint' (id=${post.id})}">-</a></td>
         <td><a th:href="${post.url}" th:text="${post.title}"></a></td>
     </tr>
 </table>
