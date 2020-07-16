@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit a new post</title>
+</head>
+<body>
+
+<h1>Submit a new post</h1>
+<form action="/submit" method="post">
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title"/>
+    <label for="url">URL</label>
+    <input type="text" name="url" id="url"/>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
