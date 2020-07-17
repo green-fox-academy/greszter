@@ -1,14 +1,21 @@
 package com.greenfoxacademy.reddit.service;
 
+import static com.greenfoxacademy.reddit.repository.PostRepository.pageWithTenElements;
+
+
 import com.greenfoxacademy.reddit.model.Post;
 import com.greenfoxacademy.reddit.repository.PostRepository;
+import java.awt.print.PageFormat;
+import java.awt.print.Pageable;
+import java.awt.print.Printable;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PostService {
+public class PostService implements Pageable {
 
   private PostRepository postRepository;
 
@@ -44,6 +51,23 @@ public class PostService {
         .limit(10)
         .collect(Collectors.toList());
   }
+
+
+  @Override
+  public int getNumberOfPages() {
+    return 0;
+  }
+
+  @Override
+  public PageFormat getPageFormat(int pageIndex) throws IndexOutOfBoundsException {
+    return null;
+  }
+
+  @Override
+  public Printable getPrintable(int pageIndex) throws IndexOutOfBoundsException {
+    return null;
+  }
+
 
 
 }
