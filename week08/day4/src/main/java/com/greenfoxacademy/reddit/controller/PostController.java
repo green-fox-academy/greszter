@@ -21,7 +21,7 @@ public class PostController {
 
   @GetMapping("/")
   public String main(Model model){
-    model.addAttribute("posts", postService.getPosts());
+    model.addAttribute("posts", postService.getFirstTenInOrder());
     return "index";
   }
 
@@ -33,7 +33,7 @@ public class PostController {
   @PostMapping("/submit")
   public String submitURL(@RequestParam String title, @RequestParam String url){
     this.postService.savePost(title, url);
-    return "redirect:/index";
+    return "redirect:/";
   }
 
   @GetMapping("/{id}/addpoint")

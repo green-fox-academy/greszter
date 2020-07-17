@@ -28,12 +28,4 @@ public class Post {
     points = 0;
   }
 
-  public void setPoints(Integer points) {
-    this.points = points;
-  }
-
-  public Integer getPoints() {
-    return points;
-  }
-
 }

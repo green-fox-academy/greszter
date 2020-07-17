@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <title>Reddit</title>
 </head>
 <body>
@@ -9,7 +10,7 @@
 
 <h1>Trending posts</h1>
 
-<table>
+<table class="table table-borderless w-auto">
     <tr th:each="post : ${posts}">
         <td th:text="${post.points}"></td>
         <td><a th:href="@{'/{id}/addpoint' (id=${post.id})}">+</a></td>
@@ -17,6 +18,8 @@
         <td><a th:href="${post.url}" th:text="${post.title}"></a></td>
     </tr>
 </table>
-
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </body>
 </html>

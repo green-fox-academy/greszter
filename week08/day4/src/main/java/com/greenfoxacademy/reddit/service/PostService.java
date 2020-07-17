@@ -3,7 +3,7 @@ package com.greenfoxacademy.reddit.service;
 import com.greenfoxacademy.reddit.model.Post;
 import com.greenfoxacademy.reddit.repository.PostRepository;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,17 +26,24 @@ public class PostService {
   }
 
   public void addPoint(Long id) {
-    Optional<Post> optionalPost = this.postRepository.findById(id);
-    Integer point = optionalPost.get().getPoints();
-    optionalPost.get().setPoints(point += 1);
-    this.postRepository.save(optionalPost.get());
+    Post post = this.postRepository.findById(id).get();
+    Integer point = post.getPoints();
+    post.setPoints(point + 1);
+    this.postRepository.save(post);
   }
 
   public void subtractPoint(Long id) {
-    Optional<Post> optionalPost = this.postRepository.findById(id);
-    Integer point = this.postRepository.findById(id).get().getPoints();
-    optionalPost.get().setPoints(point -= 1);
-    this.postRepository.save(optionalPost.get());
+    Post post = this.postRepository.findById(id).get();
+    Integer point = post.getPoints();
+    post.setPoints(point - 1);
+    this.postRepository.save(post);
   }
+
+  public List<Post> getFirstTenInOrder(){
+    return this.postRepository.findAllOrderByPoints().stream()
+        .limit(10)
+        .collect(Collectors.toList());
+  }
+
 
 }
