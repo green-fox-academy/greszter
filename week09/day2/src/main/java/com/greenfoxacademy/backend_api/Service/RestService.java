@@ -3,6 +3,8 @@ package com.greenfoxacademy.backend_api.Service;
 import com.greenfoxacademy.backend_api.Models.Appended;
 import com.greenfoxacademy.backend_api.Models.DoublingResult;
 import com.greenfoxacademy.backend_api.Models.ErrorMessage;
+import com.greenfoxacademy.backend_api.Models.Result;
+import com.greenfoxacademy.backend_api.Models.Until;
 import com.greenfoxacademy.backend_api.Models.WelcomeMessage;
 import org.springframework.stereotype.Service;
 
@@ -34,4 +36,27 @@ public class RestService {
   public Appended appendA(String appendable){
     return new Appended(appendable);
   }
+
+  public Result sumUntil(Integer number){
+    int result = 0;
+    for (int i = 0; i <= number; i++) {
+      result += i;
+    }
+    return new Result(result);
+  }
+
+  public Result factorUntil(Integer number){
+    int result = 1;
+    for (int i = 1; i <= number; i++) {
+      result = result * i;
+    }
+    return new Result(result);
+  }
+
+  public ErrorMessage dountilError(){
+    return new ErrorMessage("Please provide a number!");
+  }
+
+
+
 }
