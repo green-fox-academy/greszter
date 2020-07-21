@@ -73,10 +73,8 @@ public class MainController {
     if (number == null) {
       return ResponseEntity.ok(this.service.dountilError());
     }  else if (action.equals("factor")) {
-      System.out.println(this.service.factorUntil(number));
       return ResponseEntity.ok(this.service.factorUntil(number));
     } else if (action.equals("sum")) {
-      System.out.println(this.service.sumUntil(number));
       return ResponseEntity.ok(this.service.sumUntil(number));
     }
     return null;
