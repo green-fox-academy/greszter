@@ -1,10 +1,11 @@
 package com.greenfoxacademy.backend_api.Service;
 
 import com.greenfoxacademy.backend_api.Models.Appended;
+import com.greenfoxacademy.backend_api.Models.ArrayHandler;
+import com.greenfoxacademy.backend_api.Models.ArrayResult;
 import com.greenfoxacademy.backend_api.Models.DoublingResult;
 import com.greenfoxacademy.backend_api.Models.ErrorMessage;
 import com.greenfoxacademy.backend_api.Models.Result;
-import com.greenfoxacademy.backend_api.Models.Until;
 import com.greenfoxacademy.backend_api.Models.WelcomeMessage;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +58,36 @@ public class RestService {
     return new ErrorMessage("Please provide a number!");
   }
 
+  public Result handleArray(ArrayHandler arrayHandler){
+    int[] numbers = arrayHandler.getNumbers();
+    int result = 0;
+    if (arrayHandler.getWhat().equals("sum")){
+      for (int i = 0; i < numbers.length; i++) {
+        result += numbers[i];
+      }
+      return new Result(result);
+    } else if (arrayHandler.getWhat().equals("multiply")){
+      result = 1;
+      for (int i = 0; i < numbers.length; i++) {
+        result = result * numbers[i];
+      }
+      return new Result(result);
+    }
+    return null;
+  }
+
+  public ArrayResult handleArrayIfDouble(ArrayHandler arrayHandler){
+    int[] numbers = arrayHandler.getNumbers();
+    int[] doubledNumbers = new int[numbers.length];
+    for (int i = 0; i < numbers.length; i++) {
+      doubledNumbers[i] = numbers[i] * 2;
+    }
+    return new ArrayResult(doubledNumbers);
+  }
+
+  public ErrorMessage handleArrayError(){
+    return new ErrorMessage("Please provide what to do with the numbers!");
+  }
 
 
 }
