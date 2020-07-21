@@ -1,5 +1,6 @@
 package com.greenfoxacademy.backend_api.Service;
 
+import com.greenfoxacademy.backend_api.Models.Appended;
 import com.greenfoxacademy.backend_api.Models.DoublingResult;
 import com.greenfoxacademy.backend_api.Models.ErrorMessage;
 import com.greenfoxacademy.backend_api.Models.WelcomeMessage;
@@ -28,5 +29,9 @@ public class RestService {
     } else {
       return new ErrorMessage("Please provide a title!");
     }
+  }
+
+  public Appended appendA(String appendable){
+    return new Appended(appendable);
   }
 }

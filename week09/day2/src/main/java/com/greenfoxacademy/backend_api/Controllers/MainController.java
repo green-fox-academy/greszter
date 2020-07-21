@@ -50,4 +50,14 @@ public class MainController {
       return ResponseEntity.ok(this.service.greeting(name, title));
     }
   }
+
+  @GetMapping("/appenda/{appendable}")
+  @ResponseBody
+  public ResponseEntity<? extends Object> appendA(@PathVariable (name = "appendable") String appendable){
+    if (appendable == null){
+      return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body("");
+    } else {
+      return ResponseEntity.ok(this.service.appendA(appendable));
+    }
+  }
 }
