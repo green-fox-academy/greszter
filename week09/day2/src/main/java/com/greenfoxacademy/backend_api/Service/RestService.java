@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RestService {
 
+
   public DoublingResult doubling(Integer input) {
     return new DoublingResult(input, input * 2);
   }
@@ -88,6 +89,7 @@ public class RestService {
   public ErrorMessage handleArrayError(){
     return new ErrorMessage("Please provide what to do with the numbers!");
   }
+
 
 
 }
