@@ -1,6 +1,5 @@
 package com.greenfoxacademy.backend_api.Models;
 
-import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,9 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class LogCount {
+public class SithOutput {
 
-  private List<Log> entries;
-  private int entry_count;
+  private String sith_text;
 
+  public SithOutput(String sith_text) {
+    this.sith_text = sith_text;
+  }
 }

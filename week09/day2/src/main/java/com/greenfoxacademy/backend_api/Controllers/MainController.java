@@ -2,11 +2,11 @@ package com.greenfoxacademy.backend_api.Controllers;
 
 import com.greenfoxacademy.backend_api.Models.ArrayHandler;
 import com.greenfoxacademy.backend_api.Models.Log;
+import com.greenfoxacademy.backend_api.Models.SithInput;
 import com.greenfoxacademy.backend_api.Models.Until;
 import com.greenfoxacademy.backend_api.Service.LogService;
 import com.greenfoxacademy.backend_api.Service.RestService;
 import java.util.Arrays;
-import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +33,7 @@ public class MainController {
   public ResponseEntity<? extends Object> doubling(
       @RequestParam(required = false, name = "input") Integer input) {
     Log log = new Log("doubling", "input=" + String.valueOf(input));
-    logService.saveLog(log);
+    this.logService.saveLog(log);
     if (input == null) {
       return ResponseEntity.ok(this.service.doublingError());
     } else {
@@ -102,5 +102,14 @@ public class MainController {
   public ResponseEntity<? extends Object> log() {
     return ResponseEntity.ok(this.logService.getLogCount());
   }
+
+  @PostMapping("/sith")
+  public ResponseEntity<? extends Object> sithReverser(@RequestBody (required = false) SithInput sithInput){
+    if (sithInput.getText().isEmpty()){
+      return ResponseEntity.ok(this.service.sithError());
+    } else
+      return ResponseEntity.ok(this.service.sithReverse(sithInput));
+  }
+
 
 }
