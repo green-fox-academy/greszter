@@ -1,6 +1,7 @@
 package com.greenfoxacademy.backend_api.Controllers;
 
 import com.greenfoxacademy.backend_api.Models.ArrayHandler;
+import com.greenfoxacademy.backend_api.Models.ErrorMessage;
 import com.greenfoxacademy.backend_api.Models.Log;
 import com.greenfoxacademy.backend_api.Models.SithInput;
 import com.greenfoxacademy.backend_api.Models.Until;
@@ -35,7 +36,7 @@ public class MainController {
     Log log = new Log("doubling", "input=" + String.valueOf(input));
     this.logService.saveLog(log);
     if (input == null) {
-      return ResponseEntity.ok(this.service.doublingError());
+      return ResponseEntity.ok(new ErrorMessage("Please provide an input!"));
     } else {
       return ResponseEntity.ok(this.service.doubling(input));
     }
@@ -47,9 +48,15 @@ public class MainController {
       @RequestParam(required = false, name = "title") String title) {
     Log log = new Log("greeter", "name=" + name + " title=" + title);
     logService.saveLog(log);
-    if (name == null || title == null) {
+    if (name == null && title == null) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-          .body(this.service.greetingError(name, title));
+          .body(new ErrorMessage("Please provide a name and a title!"));
+    } else if (name == null) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+          .body(new ErrorMessage("Please provide a name!"));
+    } else  if (title == null) {
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+          .body(new ErrorMessage("Please provide a title!"));
     } else {
       return ResponseEntity.ok(this.service.greeting(name, title));
     }
@@ -104,11 +111,13 @@ public class MainController {
   }
 
   @PostMapping("/sith")
-  public ResponseEntity<? extends Object> sithReverser(@RequestBody (required = false) SithInput sithInput){
-    if (sithInput.getText().isEmpty()){
+  public ResponseEntity<? extends Object> sithReverser(
+      @RequestBody(required = false) SithInput sithInput) {
+    if (sithInput.getText().isEmpty()) {
       return ResponseEntity.ok(this.service.sithError());
-    } else
+    } else {
       return ResponseEntity.ok(this.service.sithReverse(sithInput));
+    }
   }
 
 
