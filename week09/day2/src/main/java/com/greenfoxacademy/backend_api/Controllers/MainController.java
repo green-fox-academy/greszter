@@ -9,6 +9,7 @@ import com.greenfoxacademy.backend_api.Service.LogService;
 import com.greenfoxacademy.backend_api.Service.RestService;
 import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -80,12 +81,16 @@ public class MainController {
     Integer number = until.getUntil();
     Log log = new Log("dountil", "action=" + action + " until=" + String.valueOf(number));
     logService.saveLog(log);
+    HttpHeaders responseHeaders = new HttpHeaders();
+    responseHeaders.set("Content-Type",
+        "application/json;charset=UTF-8");
+
     if (number == null) {
-      return ResponseEntity.ok(this.service.dountilError());
+      return ResponseEntity.ok().headers(responseHeaders).body(this.service.dountilError());
     } else if (action.equals("factor")) {
-      return ResponseEntity.ok(this.service.factorUntil(number));
+      return ResponseEntity.ok().headers(responseHeaders).body(this.service.factorUntil(number));
     } else if (action.equals("sum")) {
-      return ResponseEntity.ok(this.service.sumUntil(number));
+      return ResponseEntity.ok().headers(responseHeaders).body(this.service.sumUntil(number));
     }
     return null;
   }
