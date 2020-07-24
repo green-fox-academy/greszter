@@ -97,16 +97,20 @@ public class MainController {
 
   @PostMapping("/arrays")
   public ResponseEntity<? extends Object> arrayHandler(@RequestBody ArrayHandler arrayHandler) {
+    HttpHeaders responseHeaders = new HttpHeaders();
+    responseHeaders.set("Content-Type",
+        "application/json;charset=UTF-8");
+
     Log log = new Log("arrays", "what=" + arrayHandler.getWhat() + " numbers=" +
         Arrays.toString(arrayHandler.getNumbers()));
     logService.saveLog(log);
-    if (arrayHandler.getWhat().isEmpty() || arrayHandler.getNumbers().length == 0) {
-      return ResponseEntity.ok(this.service.handleArrayError());
+    if (arrayHandler.getWhat() == null || arrayHandler.getNumbers().length == 0) {
+      return ResponseEntity.badRequest().headers(responseHeaders).body(this.service.handleArrayError());
     }
     if (arrayHandler.getWhat().equals("double")) {
-      return ResponseEntity.ok(this.service.handleArrayIfDouble(arrayHandler));
+      return ResponseEntity.ok().headers(responseHeaders).body(this.service.handleArrayIfDouble(arrayHandler));
     } else {
-      return ResponseEntity.ok(this.service.handleArray(arrayHandler));
+      return ResponseEntity.ok().headers(responseHeaders).body(this.service.handleArray(arrayHandler));
     }
   }
 
